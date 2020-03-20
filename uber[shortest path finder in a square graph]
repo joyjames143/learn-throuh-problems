@@ -1,0 +1,73 @@
+# Consider a city where the streets are perfectly laid out to form an infinite square grid. In this city finding the shortest path between two given points (an origin and a destination) is much easier than in other more complex cities. As a new Uber developer, you are tasked to create an algorithm that does this calculation.
+# Given user's departure and destination coordinates, each of them located on some street, find the length of the shortest route between them assuming that cars can only move along the streets. Each street can be represented as a straight line defined by the x = n or y = n formula, where n is an integer.
+# Example
+# For departure = [0.4, 1] and destination = [0.9, 3], the output should be
+# perfectCity(departure, destination) = 2.7.
+# 0.6 + 2 + 0.1 = 2.7, which is the answer.
+# Input/Output
+# [execution time limit] 4 seconds (py3)
+# [input] array.float departure
+# An array [x, y] of x and y coordinates. It is guaranteed that at least one coordinate is integer.
+# Guaranteed constraints:
+# 0.0 ≤ departure[i] ≤ 10.0.
+# [input] array.float destination
+# An array [x, y] of x and y coordinates. It is guaranteed that at least one coordinate is integer.
+# Guaranteed constraints:
+# 0.0 ≤ destination[i] ≤ 10.0.
+# [output] float
+# The shorted distance between two points along the streets.
+
+def perfectcity(departure, destination):
+    import math
+    if isinstance(departure[0], int)and isinstance(departure[1], int) and isinstance(destination[0], int) and isinstance(destination[1], int):
+        x_axis = abs(departure[0] - destination[0])
+        y_axis = abs(departure[1] - destination[1])
+        print(x_axis + y_axis)
+        print('first if got executed')
+
+    # x1 >> x2         where   [x1,y1] [x2,y2]
+    elif departure[0] < destination[0] and math.ceil(destination[0]) != math.ceil(departure[0]) and math.ceil(destination[1]) != math.ceil(departure[1]):
+        ceiling = math.ceil(departure[0])
+        first_touch = round(ceiling - departure[0], 1)
+        second_touch = round(abs(destination[0] - ceiling), 1)
+        y_axis = round(abs(departure[1] - destination[1]), 1)
+        final = first_touch + second_touch + y_axis
+        print(final)
+        print('first elif got executed')
+
+    # x1 << x2         where   [x1,y1] [x2,y2]
+    elif departure[0] > destination[0] and math.ceil(destination[0]) != math.ceil(departure[0] and math.ceil(destination[1]) != math.ceil(departure[1])):
+        flooring = math.floor(departure[0])
+        first_touch = round(departure[0] - flooring, 1)
+        second_touch = round(abs(destination[0] - flooring), 1)
+        y_axis = round(abs(departure[1] - destination[1]), 1)
+        final = first_touch + second_touch + y_axis
+        print(final)
+        print('second elif got executed')
+
+    elif math.ceil(destination[0]) == math.ceil(departure[0]):
+        y_axis = round(abs(departure[1] - destination[1]), 1)
+        x_axis = round((math.ceil(destination[0])-destination[0]) + (math.ceil(departure[0])-departure[0]), 1)
+        another_x_axis = round((destination[0] - math.floor(destination[0])) + (departure[0] - math.floor(departure[0])), 1)
+        if x_axis > another_x_axis :
+            final = y_axis + another_x_axis
+        else:
+            final = y_axis + x_axis
+
+        print(final)
+        print('third elif got executed')
+
+    elif math.ceil(destination[1]) == math.ceil(departure[1]):
+        x_axis = round(abs(departure[0] - destination[0]), 1)
+        y_axis = round((math.ceil(destination[1]) - destination[1]) + (math.ceil(departure[1]) - departure[1]), 1)
+        another_y_axis = round((destination[1] - math.floor(destination[1])) + (departure[1] - math.floor(departure[1])), 1)
+        if y_axis > another_y_axis:
+            final = x_axis + another_y_axis
+        else:
+            final = x_axis + y_axis
+
+        print(final)
+        print('forth elif got executed')
+
+
+perfectcity([0.4, 1], [0.9, 3])
