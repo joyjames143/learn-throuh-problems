@@ -26,4 +26,6 @@ def domainType(domains):
             list.append('network')
         elif x[-1] =='info':
             list.append('information')
-    return list
+    print(list)
+
+domainType(["com.net.info", "org.com.net", "net.com.org",  "info.net.com", "net.net.com", "com.com.org", "info.info.net", "org.org.info"])
