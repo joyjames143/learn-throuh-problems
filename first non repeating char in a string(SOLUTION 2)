@@ -1,0 +1,19 @@
+s="abacabd"
+def firstNotRepeatingCharacter(s):
+    a = {}
+    b = {}
+    for i in range(len(s)):
+        if s[i] not in a and s[i] in b:
+            b.update({s[i]: 2})
+        elif s[i] in a:
+            a.pop(s[i])
+            b.update({s[i]: 2})
+        else:
+            a.update({s[i]:1})
+    if len(a) == 0:
+        return("_")
+    else:   
+        for i in a:
+            return(i)
+            break
+print(firstNotRepeatingCharacter(s))
