@@ -1,0 +1,11 @@
+s = "abacabad"
+value = 0
+for i,element in enumerate(s):
+    if value>0:
+        value = 0
+    for j,elementss in enumerate(s):
+        if element==elementss :
+            value+=1
+    if value==1:
+        print(element)
+        break
